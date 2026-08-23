@@ -4,6 +4,7 @@ import { requireTeacher } from "@/lib/auth/guards";
 import { scopeWhere } from "@/lib/db/scope";
 import { createEntrySchema, listEntriesQuerySchema } from "@/lib/validation/entries";
 import { toErrorResponse } from "@/lib/api/errors";
+import { storage } from "@/lib/storage";
 
 export async function GET(request: NextRequest) {
   try {
@@ -31,7 +32,16 @@ export async function GET(request: NextRequest) {
     const hasMore = entries.length > query.take;
     const page = hasMore ? entries.slice(0, query.take) : entries;
 
-    return NextResponse.json({ entries: page, nextCursor: hasMore ? page[page.length - 1]?.id : null });
+    const withUrls = await Promise.all(
+      page.map(async (entry) => ({
+        ...entry,
+        photos: await Promise.all(
+          entry.photos.map(async (photo) => ({ ...photo, url: await storage.getUrl(photo.url) })),
+        ),
+      })),
+    );
+
+    return NextResponse.json({ entries: withUrls, nextCursor: hasMore ? page[page.length - 1]?.id : null });
   } catch (error) {
     return toErrorResponse(error);
   }

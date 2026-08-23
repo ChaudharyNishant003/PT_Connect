@@ -16,7 +16,10 @@ export async function GET(_request: NextRequest, { params }: { params: { entryId
     if (!entry) {
       return NextResponse.json({ error: "Entry not found" }, { status: 404 });
     }
-    return NextResponse.json({ entry });
+    const photos = await Promise.all(
+      entry.photos.map(async (photo) => ({ ...photo, url: await storage.getUrl(photo.url) })),
+    );
+    return NextResponse.json({ entry: { ...entry, photos } });
   } catch (error) {
     return toErrorResponse(error);
   }
@@ -72,7 +75,10 @@ export async function PATCH(request: NextRequest, { params }: { params: { entryI
       include: { photos: { orderBy: { sortOrder: "asc" } }, subject: true },
     });
 
-    return NextResponse.json({ entry });
+    const photos = await Promise.all(
+      entry.photos.map(async (photo) => ({ ...photo, url: await storage.getUrl(photo.url) })),
+    );
+    return NextResponse.json({ entry: { ...entry, photos } });
   } catch (error) {
     return toErrorResponse(error);
   }
