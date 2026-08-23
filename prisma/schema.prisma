@@ -1,0 +1,184 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TeacherRole {
+  OWNER
+  TEACHER
+}
+
+enum EntryType {
+  CLASSWORK
+  HOMEWORK
+  TEST
+  REVISION
+}
+
+model Organization {
+  id           String   @id @default(cuid())
+  name         String
+  contactEmail String?
+  contactPhone String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  teachers Teacher[]
+  students Student[]
+}
+
+model Teacher {
+  id           String       @id @default(cuid())
+  orgId        String
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  name            String
+  email           String      @unique
+  passwordHash    String
+  role            TeacherRole @default(TEACHER)
+  isActive        Boolean     @default(true)
+  preferredLocale String      @default("en")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  students            Student[]            @relation("StudentOwner")
+  entries             Entry[]
+  passwordResetTokens PasswordResetToken[]
+  inviteToken         InviteToken?         @relation("InviteRecipient")
+
+  @@index([orgId])
+  @@index([orgId, role])
+}
+
+model Student {
+  id           String       @id @default(cuid())
+  orgId        String
+  organization Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+  teacherId    String
+  teacher      Teacher      @relation("StudentOwner", fields: [teacherId], references: [id], onDelete: Cascade)
+
+  name        String
+  grade       String?
+  parentName  String?
+  parentPhone String?
+
+  isArchived Boolean   @default(false)
+  archivedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subjects           Subject[]
+  entries            Entry[]
+  parentAccessTokens ParentAccessToken[]
+
+  @@index([orgId])
+  @@index([teacherId])
+  @@index([orgId, teacherId])
+  @@index([orgId, isArchived])
+}
+
+model Subject {
+  id        String  @id @default(cuid())
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  name      String
+  color     String?
+  sortOrder Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  entries Entry[]
+
+  @@unique([studentId, name])
+  @@index([studentId])
+}
+
+model Entry {
+  id        String  @id @default(cuid())
+  orgId     String
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subjectId String
+  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  type      EntryType @default(CLASSWORK)
+  entryDate DateTime  @default(now())
+  dueDate   DateTime?
+  caption   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  photos EntryPhoto[]
+
+  @@index([orgId])
+  @@index([studentId, entryDate])
+  @@index([studentId, subjectId, entryDate])
+  @@index([teacherId])
+  @@index([type, dueDate])
+}
+
+model EntryPhoto {
+  id      String @id @default(cuid())
+  entryId String
+  entry   Entry  @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  url       String
+  sortOrder Int    @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([entryId])
+}
+
+model ParentAccessToken {
+  id        String  @id @default(cuid())
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  token          String    @unique
+  label          String?
+  isActive       Boolean   @default(true)
+  revokedAt      DateTime?
+  lastAccessedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([studentId])
+}
+
+model InviteToken {
+  id        String  @id @default(cuid())
+  orgId     String
+  teacherId String  @unique
+  teacher   Teacher @relation("InviteRecipient", fields: [teacherId], references: [id], onDelete: Cascade)
+
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+
+  createdAt DateTime @default(now())
+}
+
+model PasswordResetToken {
+  id        String  @id @default(cuid())
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  token     String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([teacherId])
+}

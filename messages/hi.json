@@ -1,0 +1,96 @@
+{
+  "common": {
+    "appName": "PT Connect",
+    "save": "सेव करें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "loading": "लोड हो रहा है...",
+    "search": "खोजें",
+    "close": "बंद करें",
+    "continue": "जारी रखें",
+    "back": "वापस",
+    "language": "भाषा",
+    "english": "अंग्रेज़ी",
+    "hindi": "हिन्दी"
+  },
+  "auth": {
+    "signupTitle": "अपना ट्यूशन सेंटर बनाएं",
+    "centerName": "ट्यूशन सेंटर का नाम",
+    "yourName": "आपका नाम",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "signup": "खाता बनाएं",
+    "loginTitle": "लॉग इन करें",
+    "login": "लॉग इन करें",
+    "logout": "लॉग आउट करें",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "resetPassword": "पासवर्ड रीसेट करें",
+    "alreadyHaveAccount": "पहले से खाता है?",
+    "needAccount": "खाता चाहिए?",
+    "acceptInviteTitle": "अपना पासवर्ड सेट करें",
+    "setPassword": "पासवर्ड सेट करें और जारी रखें"
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "addTodaysWork": "आज का काम जोड़ें",
+    "progress": "{total} में से {done} छात्र आज पूरे हुए",
+    "welcome": "वापसी पर स्वागत है, {name}"
+  },
+  "students": {
+    "title": "छात्र",
+    "addStudent": "छात्र जोड़ें",
+    "name": "नाम",
+    "grade": "कक्षा",
+    "parentName": "अभिभावक का नाम",
+    "parentPhone": "अभिभावक का फ़ोन नंबर",
+    "subjects": "विषय",
+    "addSubject": "विषय जोड़ें",
+    "customSubject": "कस्टम विषय",
+    "archiveStudent": "छात्र को आर्काइव करें",
+    "shareLink": "शेयर लिंक",
+    "copyLink": "लिंक कॉपी करें",
+    "regenerateLink": "लिंक फिर से बनाएं",
+    "showQr": "QR कोड दिखाएं",
+    "timeline": "टाइमलाइन",
+    "noEntriesYet": "अभी तक कोई एंट्री नहीं"
+  },
+  "addWork": {
+    "pickStudents": "छात्र चुनें",
+    "selected": "{count} चयनित",
+    "pickSubject": "विषय चुनें",
+    "takePhoto": "फ़ोटो लें",
+    "addMorePhotos": "और जोड़ें",
+    "entryType": {
+      "CLASSWORK": "कक्षा कार्य",
+      "HOMEWORK": "गृहकार्य",
+      "TEST": "टेस्ट",
+      "REVISION": "रिवीजन"
+    },
+    "dueDate": "नियत तारीख",
+    "caption": "कैप्शन (वैकल्पिक)",
+    "save": "सेव करें",
+    "savedDone": "सेव हो गया",
+    "doneToday": "{total} में से {done} छात्र आज पूरे हुए"
+  },
+  "parent": {
+    "today": "आज का अपडेट",
+    "pendingHomework": "बकाया गृहकार्य",
+    "upcomingTests": "आगामी टेस्ट",
+    "needsRevision": "रिवीजन आवश्यक",
+    "history": "पूरा इतिहास",
+    "loadMore": "और लोड करें",
+    "noUpdatesToday": "आज अभी तक कोई अपडेट नहीं है।",
+    "linkInvalid": "यह लिंक अब मान्य नहीं है",
+    "linkInvalidDesc": "कृपया शिक्षक से नया लिंक मांगें।"
+  },
+  "org": {
+    "settingsTitle": "संगठन सेटिंग्स",
+    "orgProfile": "सेंटर प्रोफ़ाइल",
+    "teachers": "शिक्षक",
+    "inviteTeacher": "शिक्षक आमंत्रित करें",
+    "deactivate": "निष्क्रिय करें",
+    "owner": "मालिक",
+    "teacher": "शिक्षक"
+  }
+}

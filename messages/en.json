@@ -1,0 +1,96 @@
+{
+  "common": {
+    "appName": "PT Connect",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "search": "Search",
+    "close": "Close",
+    "continue": "Continue",
+    "back": "Back",
+    "language": "Language",
+    "english": "English",
+    "hindi": "Hindi"
+  },
+  "auth": {
+    "signupTitle": "Set up your tuition center",
+    "centerName": "Tuition center name",
+    "yourName": "Your name",
+    "email": "Email",
+    "password": "Password",
+    "signup": "Create account",
+    "loginTitle": "Log in",
+    "login": "Log in",
+    "logout": "Log out",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password",
+    "alreadyHaveAccount": "Already have an account?",
+    "needAccount": "Need an account?",
+    "acceptInviteTitle": "Set your password",
+    "setPassword": "Set password and continue"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "addTodaysWork": "Add Today's Work",
+    "progress": "{done} of {total} students done today",
+    "welcome": "Welcome back, {name}"
+  },
+  "students": {
+    "title": "Students",
+    "addStudent": "Add student",
+    "name": "Name",
+    "grade": "Grade / class",
+    "parentName": "Parent name",
+    "parentPhone": "Parent phone",
+    "subjects": "Subjects",
+    "addSubject": "Add subject",
+    "customSubject": "Custom subject",
+    "archiveStudent": "Archive student",
+    "shareLink": "Share link",
+    "copyLink": "Copy link",
+    "regenerateLink": "Regenerate link",
+    "showQr": "Show QR code",
+    "timeline": "Timeline",
+    "noEntriesYet": "No entries yet"
+  },
+  "addWork": {
+    "pickStudents": "Pick student(s)",
+    "selected": "{count} selected",
+    "pickSubject": "Pick subject",
+    "takePhoto": "Take photo",
+    "addMorePhotos": "Add more",
+    "entryType": {
+      "CLASSWORK": "Class Work",
+      "HOMEWORK": "Homework",
+      "TEST": "Test",
+      "REVISION": "Revision"
+    },
+    "dueDate": "Due date",
+    "caption": "Caption (optional)",
+    "save": "Save",
+    "savedDone": "Saved",
+    "doneToday": "{done} of {total} students done today"
+  },
+  "parent": {
+    "today": "Today's Update",
+    "pendingHomework": "Pending Homework",
+    "upcomingTests": "Upcoming Tests",
+    "needsRevision": "Needs Revision",
+    "history": "Full History",
+    "loadMore": "Load more",
+    "noUpdatesToday": "No updates logged today yet.",
+    "linkInvalid": "This link is no longer valid",
+    "linkInvalidDesc": "Please ask the teacher for a new link."
+  },
+  "org": {
+    "settingsTitle": "Organization settings",
+    "orgProfile": "Center profile",
+    "teachers": "Teachers",
+    "inviteTeacher": "Invite teacher",
+    "deactivate": "Deactivate",
+    "owner": "Owner",
+    "teacher": "Teacher"
+  }
+}

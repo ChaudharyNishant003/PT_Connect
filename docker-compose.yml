@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ptc_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ptc
+      POSTGRES_PASSWORD: ptc_dev_password
+      POSTGRES_DB: ptc_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - ptc_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ptc -d ptc_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ptc_postgres_data:
