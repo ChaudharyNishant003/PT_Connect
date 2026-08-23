@@ -43,6 +43,6 @@ export const config = {
     "/api/uploads/:path*",
     "/api/org/:path*",
     "/api/teachers/:path*",
-    "/api/auth/invite/:path*",
+    "/api/auth/invite",
   ],
 };
