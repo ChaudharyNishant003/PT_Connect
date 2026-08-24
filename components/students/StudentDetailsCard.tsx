@@ -84,7 +84,8 @@ export default function StudentDetailsCard({ student }: { student: StudentDetail
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="text-sm font-medium text-brand"
+          aria-label={`${t("common.edit")} ${student.name}`}
+          className="min-h-[44px] px-2 text-sm font-medium text-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           {t("common.edit")}
         </button>
@@ -94,7 +95,11 @@ export default function StudentDetailsCard({ student }: { student: StudentDetail
           {[student.parentName, student.parentPhone].filter(Boolean).join(" · ")}
         </p>
       )}
-      <button type="button" onClick={handleArchive} className="mt-2 self-start text-xs text-red-600">
+      <button
+        type="button"
+        onClick={handleArchive}
+        className="mt-2 min-h-[36px] self-start text-xs text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+      >
         {t("students.archiveStudent")}
       </button>
     </div>

@@ -33,7 +33,7 @@ export default function LocaleToggle() {
         type="button"
         onClick={() => setLocale("en")}
         aria-pressed={locale === "en"}
-        className={`min-h-[36px] rounded-full px-3 font-medium transition-colors ${
+        className={`min-h-[36px] rounded-full px-3 font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
           locale === "en" ? "bg-brand text-white" : "text-gray-600"
         }`}
       >
@@ -43,7 +43,7 @@ export default function LocaleToggle() {
         type="button"
         onClick={() => setLocale("hi")}
         aria-pressed={locale === "hi"}
-        className={`min-h-[36px] rounded-full px-3 font-medium transition-colors ${
+        className={`min-h-[36px] rounded-full px-3 font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
           locale === "hi" ? "bg-brand text-white" : "text-gray-600"
         }`}
       >

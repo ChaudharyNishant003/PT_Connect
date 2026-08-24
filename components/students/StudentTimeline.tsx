@@ -77,7 +77,8 @@ export default function StudentTimeline({ studentId, subjects }: { studentId: st
         <select
           value={subjectFilter}
           onChange={(e) => setSubjectFilter(e.target.value)}
-          className="min-h-[36px] rounded-lg border border-gray-300 px-2 text-sm"
+          aria-label={`Filter ${t("students.timeline")} by subject`}
+          className="min-h-[44px] rounded-lg border border-gray-300 px-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         >
           <option value="">All subjects</option>
           {subjects.map((s) => (
@@ -89,7 +90,8 @@ export default function StudentTimeline({ studentId, subjects }: { studentId: st
         <select
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-          className="min-h-[36px] rounded-lg border border-gray-300 px-2 text-sm"
+          aria-label={`Filter ${t("students.timeline")} by type`}
+          className="min-h-[44px] rounded-lg border border-gray-300 px-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         >
           <option value="">All types</option>
           {ENTRY_TYPES.map((type) => (
@@ -124,11 +126,19 @@ export default function StudentTimeline({ studentId, subjects }: { studentId: st
                           </span>
                         )}
                       </div>
-                      <div className="flex gap-2 text-xs">
-                        <button className="text-brand" onClick={() => setEditingEntry(entry)}>
+                      <div className="flex gap-1 text-xs">
+                        <button
+                          className="min-h-[36px] min-w-[36px] px-2 text-brand"
+                          aria-label={`${t("common.edit")} ${entry.subject.name} entry`}
+                          onClick={() => setEditingEntry(entry)}
+                        >
                           {t("common.edit")}
                         </button>
-                        <button className="text-red-600" onClick={() => handleDelete(entry.id)}>
+                        <button
+                          className="min-h-[36px] min-w-[36px] px-2 text-red-600"
+                          aria-label={`${t("common.delete")} ${entry.subject.name} entry`}
+                          onClick={() => handleDelete(entry.id)}
+                        >
                           {t("common.delete")}
                         </button>
                       </div>
@@ -141,7 +151,7 @@ export default function StudentTimeline({ studentId, subjects }: { studentId: st
                           <img
                             key={photo.id}
                             src={photo.url}
-                            alt=""
+                            alt={`Photo for ${entry.subject.name}`}
                             className="h-16 w-16 rounded-lg border border-gray-200 object-cover"
                           />
                         ))}
@@ -236,7 +246,8 @@ function EditEntrySheet({
         <select
           value={subjectId}
           onChange={(e) => setSubjectId(e.target.value)}
-          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm"
+          aria-label={t("students.subjects")}
+          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         >
           {subjects.map((s) => (
             <option key={s.id} value={s.id}>
@@ -245,7 +256,7 @@ function EditEntrySheet({
           ))}
         </select>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="group" aria-label={t("addWork.pickSubject")}>
           {ENTRY_TYPES.map((entryType) => (
             <Chip key={entryType} active={type === entryType} onClick={() => setType(entryType)}>
               {t(`addWork.entryType.${entryType}`)}
@@ -258,7 +269,8 @@ function EditEntrySheet({
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm"
+            aria-label={t("addWork.dueDate")}
+            className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
           />
         )}
 
@@ -267,18 +279,24 @@ function EditEntrySheet({
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
           placeholder={t("addWork.caption")}
-          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm"
+          aria-label={t("addWork.caption")}
+          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         />
 
         <div className="flex flex-wrap gap-2">
           {remainingPhotos.map((photo) => (
             <div key={photo.id} className="relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={photo.url} alt="" className="h-16 w-16 rounded-lg border border-gray-200 object-cover" />
+              <img
+                src={photo.url}
+                alt={`Photo for ${entry.subject.name}`}
+                className="h-16 w-16 rounded-lg border border-gray-200 object-cover"
+              />
               <button
                 type="button"
                 onClick={() => setRemovedPhotoIds((prev) => [...prev, photo.id])}
-                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white"
+                aria-label="Remove photo"
+                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white before:absolute before:-inset-3 before:content-['']"
               >
                 ×
               </button>

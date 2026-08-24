@@ -64,8 +64,8 @@ export default function SubjectEditor({ studentId, subjects }: { studentId: stri
                 type="button"
                 onClick={() => move(index, -1)}
                 disabled={index === 0}
-                className="min-h-[32px] min-w-[32px] rounded text-gray-500 disabled:opacity-30"
-                aria-label="Move up"
+                className="min-h-[44px] min-w-[44px] rounded text-gray-500 disabled:opacity-30"
+                aria-label={`Move ${subject.name} up`}
               >
                 ↑
               </button>
@@ -73,16 +73,16 @@ export default function SubjectEditor({ studentId, subjects }: { studentId: stri
                 type="button"
                 onClick={() => move(index, 1)}
                 disabled={index === subjects.length - 1}
-                className="min-h-[32px] min-w-[32px] rounded text-gray-500 disabled:opacity-30"
-                aria-label="Move down"
+                className="min-h-[44px] min-w-[44px] rounded text-gray-500 disabled:opacity-30"
+                aria-label={`Move ${subject.name} down`}
               >
                 ↓
               </button>
               <button
                 type="button"
                 onClick={() => removeSubject(subject.id)}
-                className="min-h-[32px] min-w-[32px] rounded text-red-500"
-                aria-label="Remove"
+                className="min-h-[44px] min-w-[44px] rounded text-red-500"
+                aria-label={`Remove ${subject.name}`}
               >
                 ×
               </button>
@@ -91,16 +91,20 @@ export default function SubjectEditor({ studentId, subjects }: { studentId: stri
         ))}
       </ul>
       <form onSubmit={addSubject} className="mt-3 flex gap-2">
+        <label htmlFor="subject-editor-new" className="sr-only">
+          {t("customSubject")}
+        </label>
         <input
+          id="subject-editor-new"
           value={newSubject}
           onChange={(e) => setNewSubject(e.target.value)}
           placeholder={t("customSubject")}
-          className="min-h-[40px] flex-1 rounded-lg border border-gray-300 px-3 text-sm focus:border-brand focus:outline-none"
+          className="min-h-[44px] flex-1 rounded-lg border border-gray-300 px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         />
         <button
           type="submit"
           disabled={isSubmitting}
-          className="min-h-[40px] rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700"
+          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-sm font-medium text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
           {t("addSubject")}
         </button>

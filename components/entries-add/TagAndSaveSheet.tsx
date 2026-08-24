@@ -58,7 +58,7 @@ export default function TagAndSaveSheet({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photo.previewUrl}
-                alt=""
+                alt={`Captured photo for ${subjectName}`}
                 className={`h-20 w-20 rounded-lg border border-gray-200 object-cover ${
                   photo.status === "uploading" ? "opacity-50" : ""
                 }`}
@@ -80,7 +80,7 @@ export default function TagAndSaveSheet({
               <button
                 type="button"
                 onClick={() => onRemovePhoto(photo.localId)}
-                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-800 text-xs text-white"
+                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-800 text-xs text-white before:absolute before:-inset-3 before:content-['']"
                 aria-label="Remove photo"
               >
                 ×
@@ -118,12 +118,15 @@ export default function TagAndSaveSheet({
 
         {needsDueDate && (
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-700">{t("addWork.dueDate")}</label>
+            <label htmlFor="tag-save-due-date" className="text-sm font-medium text-gray-700">
+              {t("addWork.dueDate")}
+            </label>
             <input
+              id="tag-save-due-date"
               type="date"
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
-              className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-base"
+              className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
             />
           </div>
         )}
@@ -133,7 +136,8 @@ export default function TagAndSaveSheet({
           value={caption}
           onChange={(e) => setCaption(e.target.value)}
           placeholder={t("addWork.caption")}
-          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-base"
+          aria-label={t("addWork.caption")}
+          className="min-h-[44px] rounded-lg border border-gray-300 px-3 text-base focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
         />
 
         <Button onClick={handleSave} disabled={!canSave} className="w-full">

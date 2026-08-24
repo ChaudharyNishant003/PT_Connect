@@ -42,16 +42,26 @@ export default function SubjectTabStrip({
             key={tab.name}
             type="button"
             onClick={() => onPick(tab.name)}
-            className="relative flex min-h-[64px] items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-base font-semibold text-gray-800"
+            aria-label={
+              tab.status === "full"
+                ? `${tab.name}, logged for all selected students today`
+                : tab.status === "partial"
+                  ? `${tab.name}, logged for some selected students today`
+                  : tab.name
+            }
+            className="relative flex min-h-[64px] items-center justify-center rounded-xl border border-gray-200 bg-white px-4 text-base font-semibold text-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             {tab.name}
             {tab.status === "full" && (
-              <span className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-xs text-white">
+              <span
+                aria-hidden="true"
+                className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-xs text-white"
+              >
                 ✓
               </span>
             )}
             {tab.status === "partial" && (
-              <span className="absolute right-2 top-2 h-3 w-3 rounded-full bg-amber-500" />
+              <span aria-hidden="true" className="absolute right-2 top-2 h-3 w-3 rounded-full bg-amber-500" />
             )}
           </button>
         ))}

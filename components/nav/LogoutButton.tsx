@@ -20,7 +20,7 @@ export default function LogoutButton({ label }: { label: string }) {
       type="button"
       onClick={handleLogout}
       disabled={isPending}
-      className="min-h-[36px] rounded-full border border-gray-300 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+      className="min-h-[36px] rounded-full border border-gray-300 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
     >
       {label}
     </button>

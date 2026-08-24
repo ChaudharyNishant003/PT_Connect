@@ -35,7 +35,7 @@ export default function EntryCard({ entry, showSubject = true }: { entry: Parent
         )}
       </div>
       {entry.caption && <p className="mt-1 text-sm text-gray-700">{entry.caption}</p>}
-      <EntryPhotoGrid photos={entry.photos} />
+      <EntryPhotoGrid photos={entry.photos} label={`${entry.subject.name} ${t(`entryType.${entry.type}`).toLowerCase()}`} />
     </div>
   );
 }

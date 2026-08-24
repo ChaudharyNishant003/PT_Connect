@@ -65,7 +65,7 @@ export default function ShareLinkPanel({ studentId, tokens }: { studentId: strin
               <span className="truncate text-sm text-gray-700">{token.label ?? linkFor(token.token)}</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Button variant="secondary" onClick={() => copyLink(token)}>
+              <Button variant="secondary" onClick={() => copyLink(token)} aria-live="polite">
                 {copiedId === token.id ? "Copied!" : t("copyLink")}
               </Button>
               <Button variant="secondary" onClick={() => showQr(token)}>
@@ -82,7 +82,11 @@ export default function ShareLinkPanel({ studentId, tokens }: { studentId: strin
           </div>
         ))}
       </div>
-      <button type="button" onClick={createToken} className="mt-3 text-sm font-medium text-brand">
+      <button
+        type="button"
+        onClick={createToken}
+        className="mt-3 min-h-[44px] text-sm font-medium text-brand focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+      >
         + New link
       </button>
     </div>

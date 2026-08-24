@@ -39,7 +39,7 @@ export default function StudentPicker({
               type="button"
               onClick={() => onToggle(student.id)}
               aria-pressed={selected}
-              className={`relative flex flex-col items-center gap-2 rounded-xl border p-4 ${
+              className={`relative flex flex-col items-center gap-2 rounded-xl border p-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${
                 selected ? "border-brand bg-brand/5" : "border-gray-200 bg-white"
               }`}
             >

@@ -73,7 +73,8 @@ export default function TeacherList({ teachers }: { teachers: Teacher[] }) {
               <button
                 type="button"
                 onClick={() => toggleActive(teacher)}
-                className={`text-xs font-medium ${teacher.isActive ? "text-red-600" : "text-green-600"}`}
+                aria-label={`${teacher.isActive ? t("deactivate") : "Activate"} ${teacher.name}`}
+                className={`min-h-[36px] px-2 text-xs font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 ${teacher.isActive ? "text-red-600" : "text-green-600"}`}
               >
                 {teacher.isActive ? t("deactivate") : "Activate"}
               </button>
